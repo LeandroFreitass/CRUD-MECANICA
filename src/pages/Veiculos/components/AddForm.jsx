@@ -1,14 +1,24 @@
+import React, {useContext, useState, useEffect} from 'react';
 import { Form, Button } from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {VeiculosContext} from '../contexts/VeiculosContext';
-import {useContext, useState} from 'react';
-
+import axios from 'axios';
 import '../index.css'
 
 const AddForm = () =>{
+    const [APIData, setAPIData] = useState([])
 
     const {addEmployee} = useContext(VeiculosContext);
+
+    useEffect(() => {
+        axios.get(`http://localhost:5277/api/Veiculo`)
+          .then((response) => {
+            setAPIData(response.data);
+          })
+      }, [])
+      console.log(APIData)
+    
 
     const [newEmployee, setNewEmployee] = useState({
         name:"", email:"", phone:"", address:""

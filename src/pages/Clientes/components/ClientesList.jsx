@@ -1,5 +1,6 @@
 import { Modal, Button, Alert} from 'react-bootstrap';
 import {useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import {ClientesContext} from '../contexts/ClientesContext';
 import Employee from './Clientes';
 import AddForm from './AddForm';
@@ -10,10 +11,12 @@ import { FaUser } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import '../index.css'
+import { Link } from 'react-router-dom';
 
 const ClientesList = () => {
 
-    const {sortedEmployees} = useContext(ClientesContext);
+    // const {sortedEmployees} = useContext(VeiculosContext);
+    const [aPIData, setAPIData] = useState([])
 
     const [showAlert, setShowAlert] = useState(false);
 
@@ -23,35 +26,44 @@ const ClientesList = () => {
     const handleClose = () => setShow(false);
     //const handleShowAlert = () =>setShowAlert(true);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [employeesPerPage] = useState(2)
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [employeesPerPage] = useState(2)
 
 
-    const showToastMessage = () => {
-        toast.success('Success Notification !', {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    };
+    // const showToastMessage = () => {
+    //     toast.success('Success Notification !', {
+    //         position: toast.POSITION.TOP_RIGHT
+    //     });
+    // };
 
-    const handleShowAlert = () => {
-        setShowAlert(true);
-        setTimeout(()=> {
-            setShowAlert(false);
-        }, 2000)
-    }
+    // const handleShowAlert = () => {
+    //     setShowAlert(true);
+    //     setTimeout(()=> {
+    //         setShowAlert(false);
+    //     }, 2000)
+    // }
+
+    // useEffect(() => {
+    //     handleClose();
+
+    //     return () => {
+    //         showToastMessage();
+    //     }
+    // }, [sortedEmployees])
 
     useEffect(() => {
-        handleClose();
+        getProducts();
+      }, []);
+      
+      const getProducts = async () => {
+        const response = await axios.get("http://localhost:5277/api/Cliente");
+        setAPIData(response.data);
+      };
 
-        return () => {
-            showToastMessage();
-        }
-    }, [sortedEmployees])
-
-    const indexOfLastEmployee = currentPage * employeesPerPage;
-    const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-    const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-    const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
+    // const indexOfLastEmployee = currentPage * employeesPerPage;
+    // const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+    // const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+    // const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
 
   
 
@@ -68,38 +80,47 @@ const ClientesList = () => {
         </div>
     </div>
 
-    {/* <Alert show={showAlert} variant="success">
-    {showToastMessage}
-    </Alert> */}
+    <div class="row">
+          <div class="table-responsive ">
+            <table class="table table-striped table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Data Nascimento</th>
+                  <th>Celular</th>
+                  <th>Email</th>
+                  <th>Endereço</th>
+                  <th style={{width:'30px'}}>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aPIData.map((item, index) => (
+                  <tr key={item.id}>
+                    <td>{index + 1}</td>
+                    <td >{item.nomeCompleto}</td>
+                    <td >{item.cpf}</td>
+                    <td >{item.dataNasc}</td>
+                    <td >{item.celular}</td>
+                    <td >{item.email}</td>
+                    <td >{item.enderecoCompleto}</td>
+                    <td>
+                      <Link to={"/editMa/" + item.id} data-toggle="tooltip">
+                        <i class="material-icons">&#xE254;</i>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-    <table className="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-                {
-                  currentEmployees.map(employee => (
-                      <tr key={employee.id}>
-                        <Employee employee={employee} />
-                    </tr>
-                  ))  
-                }
-                
-
-        </tbody>
-    </table>
-
-    <Pagination pages = {totalPagesNum}
+    {/* <Pagination pages = {totalPagesNum}
                 setCurrentPage={setCurrentPage}
                 currentEmployees ={currentEmployees}
-                sortedEmployees = {sortedEmployees} />
+                sortedEmployees = {sortedEmployees} /> */}
 
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -118,6 +139,7 @@ const ClientesList = () => {
     </Modal>
     </>
     )
+
 }
 
 export default ClientesList;

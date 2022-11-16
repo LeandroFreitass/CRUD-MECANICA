@@ -1,10 +1,11 @@
 import { Modal, Button, Alert} from 'react-bootstrap';
 import {useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import {VeiculosContext} from '../contexts/VeiculosContext';
 import Employee from './Veiculos';
 import AddForm from './AddForm';
-import Pagination from './Pagination';
-import { ToastContainer, toast } from 'react-toastify';
+// import Pagination from './Pagination';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaCar } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,6 +15,7 @@ import '../index.css'
 const EmployeeList = () => {
 
     const {sortedEmployees} = useContext(VeiculosContext);
+    const [aPIData, setAPIData] = useState([])
 
     const [showAlert, setShowAlert] = useState(false);
 
@@ -23,35 +25,44 @@ const EmployeeList = () => {
     const handleClose = () => setShow(false);
     //const handleShowAlert = () =>setShowAlert(true);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [employeesPerPage] = useState(2)
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [employeesPerPage] = useState(2)
 
 
-    const showToastMessage = () => {
-        toast.success('Success Notification !', {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    };
+    // const showToastMessage = () => {
+    //     toast.success('Success Notification !', {
+    //         position: toast.POSITION.TOP_RIGHT
+    //     });
+    // };
 
-    const handleShowAlert = () => {
-        setShowAlert(true);
-        setTimeout(()=> {
-            setShowAlert(false);
-        }, 2000)
-    }
+    // const handleShowAlert = () => {
+    //     setShowAlert(true);
+    //     setTimeout(()=> {
+    //         setShowAlert(false);
+    //     }, 2000)
+    // }
+
+    // useEffect(() => {
+    //     handleClose();
+
+    //     return () => {
+    //         showToastMessage();
+    //     }
+    // }, [sortedEmployees])
 
     useEffect(() => {
-        handleClose();
+        getProducts();
+      }, []);
+      
+      const getProducts = async () => {
+        const response = await axios.get("http://localhost:5277/api/Veiculo");
+        setAPIData(response.data);
+      };
 
-        return () => {
-            showToastMessage();
-        }
-    }, [sortedEmployees])
-
-    const indexOfLastEmployee = currentPage * employeesPerPage;
-    const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-    const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-    const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
+    // const indexOfLastEmployee = currentPage * employeesPerPage;
+    // const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+    // const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+    // const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
 
   
 
@@ -68,38 +79,41 @@ const EmployeeList = () => {
         </div>
     </div>
 
-    {/* <Alert show={showAlert} variant="success">
-    {showToastMessage}
-    </Alert> */}
+    <div class="row">
+          <div class="table-responsive ">
+            <table class="table table-striped table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>IDCliente</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>placa</th>
+                  <th>Tipo</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aPIData.map((product, index) => (
+                  <tr key={product.id}>
+                    <td>{index + 1}</td>
+                    <td>{product.idCliente}</td>
+                    <td>{product.marca}</td>
+                    <td>{product.modelo}</td>
+                    <td>{product.placa}</td>
+                    <td>{product.tamanho}</td>
+                    <td></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-    <table className="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-                {
-                  currentEmployees.map(employee => (
-                      <tr key={employee.id}>
-                        <Employee employee={employee} />
-                    </tr>
-                  ))  
-                }
-                
-
-        </tbody>
-    </table>
-
-    <Pagination pages = {totalPagesNum}
+    {/* <Pagination pages = {totalPagesNum}
                 setCurrentPage={setCurrentPage}
                 currentEmployees ={currentEmployees}
-                sortedEmployees = {sortedEmployees} />
+                sortedEmployees = {sortedEmployees} /> */}
 
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
