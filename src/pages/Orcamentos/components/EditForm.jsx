@@ -1,69 +1,132 @@
+import React, { useState,useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import {OrcamentosContext} from '../contexts/OrcamentosContext';
-import {useContext, useState} from 'react';
 import '../index.css'
 
-const EditForm = ({theEmployee}) =>{
+const EditForm = () =>{
 
-    const id = theEmployee.id;
+    const [idCliente, setIdCliente] = useState('');
+    const [idVeiculo, setIdVeiculo] = useState('');
+    const [nomeMecanico, setNomeMecanico] = useState('');
+    const [defeitoReclamado, setDefeitoReclamado] = useState('');
+    const [diagnostico, setDiagnostico] = useState('');
+    const [dataPgto, setDataPgto] = useState('');
+    const [formaPgto, setFormaPgto] = useState('');
+    const [valorPgto, setValorPgto] = useState('');
 
-    const [name, setName] = useState(theEmployee.name);
-    const [email, setEmail] = useState(theEmployee.email);
-    const [address, setAddress] = useState(theEmployee.address);
-    const [phone, setPhone] = useState(theEmployee.phone);
 
+  
+    const navigate = useNavigate();
+    const { id } = useParams();
 
-    const {updateEmployee} = useContext(OrcamentosContext);
+    const updateProduct = async (e) => {
+        e.preventDefault(); 
+        await axios.put(`http://localhost:5277/api/OrdemDeServico/${id}`,{
+            idCliente: idCliente,
+            idVeiculo: idVeiculo,
+            nomeMecanico: nomeMecanico,
+            defeitoReclamado: defeitoReclamado,
+            diagnostico: diagnostico,
+            dataPgto: dataPgto,
+            formaPgto: formaPgto,
+            valorPgto: valorPgto,
+        });
+        navigate("/")
+    }
 
-    const updatedEmployee = {id, name, email, address, phone}
+    useEffect(() => {
+        getProductById()
+      }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        updateEmployee(id, updatedEmployee)
+      const getProductById = async () => {
+        const response = await axios.get(`http://localhost:5277/api/OrdemDeServico/${id}`);
+        setIdCliente(response.data.idCliente);
+        setIdVeiculo(response.data.idVeiculo);
+        setNomeMecanico(response.data.nomeMecanico);
+        setDefeitoReclamado(response.data.defeitoReclamado);
+        setDiagnostico(response.data.diagnostico);
+        setDataPgto(response.data.dataPgto);
+        setFormaPgto(response.data.formaPgto);
+        setValorPgto(response.data.valorPgto);
+
     }
 
      return (
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={updateProduct}>
             <Form.Group>
                 <Form.Control
                     type="text"
-                    placeholder="Name *"
-                    name="name"
-                    value={name}
-                    onChange={(e)=> setName(e.target.value)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    type="email"
-                    placeholder="Email *"
-                    name="email"
-                    value={email}
-                    onChange={(e)=> setEmail(e.target.value)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    as="textarea"
-                    placeholder="Address"
-                    rows={3}
-                    name="address"
-                    value={address}
-                    onChange={(e)=> setAddress(e.target.value)}
+                    placeholder="idCliente *"
+                    name="idCliente"
+                    value={idCliente}
+                    onChange={ (e) => setIdCliente(e.target.value) }
                 />
             </Form.Group>
             <Form.Group>
                 <Form.Control
                     type="text"
-                    placeholder="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange={(e)=> setPhone(e.target.value)}
+                    placeholder="idVeiculo *"
+                    name="idVeiculo"
+                    value={idVeiculo}
+                    onChange={(e)=> setIdVeiculo(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                     type="text"
+                    placeholder="nomeMecanico"
+                    name="nomeMecanico"
+                    value={nomeMecanico}
+                    onChange={(e)=> setNomeMecanico(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="defeitoReclamado"
+                    name="defeitoReclamado"
+                    value={defeitoReclamado}
+                    onChange={(e)=> setDefeitoReclamado(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="diagnostico"
+                    name="diagnostico"
+                    value={diagnostico}
+                    onChange={(e)=> setDiagnostico(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="DataPgto"
+                    name="DataPgto"
+                    value={dataPgto}
+                    onChange={(e)=> setDataPgto(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="FormaPgto"
+                    name="FormaPgto"
+                    value={formaPgto}
+                    onChange={(e)=> setFormaPgto(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="ValorPgto"
+                    name="ValorPgto"
+                    value={valorPgto}
+                    onChange={(e)=> setValorPgto(e.target.value)}
                 />
             </Form.Group>
             <Button variant="success" type="submit" block>

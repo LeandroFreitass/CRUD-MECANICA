@@ -1,80 +1,84 @@
-import React, {useContext, useState, useEffect} from 'react';
+
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import {VeiculosContext} from '../contexts/VeiculosContext';
-import axios from 'axios';
 import '../index.css'
 
+
+
 const AddForm = () =>{
-    const [APIData, setAPIData] = useState([])
-
-    const {addEmployee} = useContext(VeiculosContext);
-
-    useEffect(() => {
-        axios.get(`http://localhost:5277/api/Veiculo`)
-          .then((response) => {
-            setAPIData(response.data);
-          })
-      }, [])
-      console.log(APIData)
-    
-
-    const [newEmployee, setNewEmployee] = useState({
-        name:"", email:"", phone:"", address:""
-    });
-
-    const onInputChange = (e) => {
-        setNewEmployee({...newEmployee,[e.target.name]: e.target.value})
-    }
-
-    const {name, email, phone, address} = newEmployee;
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addEmployee(name, email, phone, address);
-    }
-
+    const navigate = useNavigate();
+    const { register, handleSubmit, setValue, setFocus } = useForm();
+  
+    const onSubmit = async (data) => {
+      console.log(data);
+      await axios.post("http://localhost:5277/api/Veiculo", {
+        ...data,
+      });
+      navigate("/");
+    };
+  
+  
      return (
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
                 <Form.Control
                     type="text"
-                    placeholder="Name *"
-                    name="name"
-                    value={name}
-                    onChange = { (e) => onInputChange(e)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    type="email"
-                    placeholder="Email *"
-                    name="email"
-                    value={email}
-                    onChange = { (e) => onInputChange(e)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    as="textarea"
-                    placeholder="Address"
-                    rows={3}
-                    name="address"
-                    value={address}
-                    onChange = { (e) => onInputChange(e)}
+                    placeholder="idCliente "
+                    name="idCliente"
+                    {...register("idCliente")}
                 />
             </Form.Group>
             <Form.Group>
                 <Form.Control
                     type="text"
-                    placeholder="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange = { (e) => onInputChange(e)}
+                    placeholder="marca "
+                    name="marca"
+                    {...register("marca")}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="modelo"
+                    name="modelo"
+                    {...register("modelo")}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="placa"
+                    name="placa"
+                    {...register("placa")}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="tamanho"
+                    name="tamanho"
+                    {...register("tamanho")}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="ano"
+                    name="ano"
+                    {...register("ano")}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="combustivel"
+                    name="combustivel"
+                    {...register("combustivel")}
                 />
             </Form.Group>
             <Button variant="success" type="submit" block>

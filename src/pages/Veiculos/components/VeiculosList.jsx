@@ -11,6 +11,7 @@ import { FaCar } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import '../index.css'
+import { Link } from 'react-router-dom';
 
 const EmployeeList = () => {
 
@@ -23,32 +24,7 @@ const EmployeeList = () => {
     
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-    //const handleShowAlert = () =>setShowAlert(true);
 
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [employeesPerPage] = useState(2)
-
-
-    // const showToastMessage = () => {
-    //     toast.success('Success Notification !', {
-    //         position: toast.POSITION.TOP_RIGHT
-    //     });
-    // };
-
-    // const handleShowAlert = () => {
-    //     setShowAlert(true);
-    //     setTimeout(()=> {
-    //         setShowAlert(false);
-    //     }, 2000)
-    // }
-
-    // useEffect(() => {
-    //     handleClose();
-
-    //     return () => {
-    //         showToastMessage();
-    //     }
-    // }, [sortedEmployees])
 
     useEffect(() => {
         getProducts();
@@ -59,10 +35,11 @@ const EmployeeList = () => {
         setAPIData(response.data);
       };
 
-    // const indexOfLastEmployee = currentPage * employeesPerPage;
-    // const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-    // const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-    // const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
+      const deleteProduct = async (idVeiculo) => {
+        await axios.delete(`http://localhost:5277/api/Veiculo/${idVeiculo}`);
+        getProducts();
+        
+    }
 
   
 
@@ -102,7 +79,20 @@ const EmployeeList = () => {
                     <td>{product.modelo}</td>
                     <td>{product.placa}</td>
                     <td>{product.tamanho}</td>
-                    <td></td>
+                    <td>
+
+                    <Link to={"/editMa/" + product.id} data-toggle="tooltip">
+                        <i class="material-icons">&#xE254;</i>
+                      </Link>
+                      
+                      <a
+                        onClick={() => deleteProduct(product.id)}
+                        data-toggle="tooltip"
+                        style={{ color: "red", cursor: 'pointer' }}
+                      >
+                        <i class="material-icons">&#xE872;</i>
+                      </a>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -110,10 +100,6 @@ const EmployeeList = () => {
           </div>
         </div>
 
-    {/* <Pagination pages = {totalPagesNum}
-                setCurrentPage={setCurrentPage}
-                currentEmployees ={currentEmployees}
-                sortedEmployees = {sortedEmployees} /> */}
 
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

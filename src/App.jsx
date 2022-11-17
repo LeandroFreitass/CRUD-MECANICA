@@ -3,9 +3,11 @@ import Layout from './components/shared/Layout'
 import Dashboard from './pages/Dashboard'
 import Clientes from './pages/Clientes'
 import Veiculos from './pages/Veiculos'
-import Mecanico from './pages/Mecanicos'
-import Orcamentos from './pages/Orcamentos'
-import DefeitoseServicos from './pages/DefeitoseServicos'
+import OrdemDeServico from './pages/Orcamentos'
+import EditForm from './pages/Veiculos/components/EditForm'
+import EditFormClient from './pages/Clientes/components/EditForm'
+import EditFormOrcamentos from './pages/Orcamentos/components/EditForm'
+
 
 
 
@@ -18,11 +20,14 @@ function App() {
                     <Route index element={<Dashboard />} />
                     <Route path="clientes" element={<Clientes />} />
                     <Route path="veiculos" element={<Veiculos />} />
-                    <Route path="mecanico" element={<Mecanico />} />
-                    <Route path="defeitoseserviços" element={<DefeitoseServicos />} />
-                    <Route path="orcamentos" element={<Orcamentos />} />
+                    <Route path="ordemDeServico" element={<OrdemDeServico />} />
+                    <Route path="/editMa/:id" element={<EditForm />} />
+                    <Route path="/client/:id" element={<EditFormClient />} />
+                    <Route path="/ordemDeServico/:id" element={<EditFormOrcamentos />} />
+
+
                 </Route>
-                <Route path="/register" element={<Orcamentos />} />
+                <Route path="/register" element={<OrdemDeServico />} />
             </Routes>
         </Router>
     )

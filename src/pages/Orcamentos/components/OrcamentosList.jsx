@@ -11,6 +11,7 @@ import { FaMoneyBill } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import '../index.css'
+import { Link } from 'react-router-dom';
 
 const EmployeeList = () => {
 
@@ -59,11 +60,11 @@ const EmployeeList = () => {
         setAPIData(response.data);
       };
 
-    // const indexOfLastEmployee = currentPage * employeesPerPage;
-    // const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-    // const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-    // const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
-
+      const deleteProduct = async (id) => {
+        await axios.delete(`http://localhost:5277/api/OrdemDeServico/${id}`);
+        getProducts();
+        
+    }
   
 
     return (
@@ -84,27 +85,39 @@ const EmployeeList = () => {
             <table class="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>IDCliente</th>
-                  <th>IDVeiculo</th>
+                  {/* <th>ID</th> */}
                   <th>Nome Mecanico</th>
                   <th>Defeito Reclamado</th>
                   <th>Diagnostico</th>
-                  <th>Pago EM</th>
-                  <th>Ação</th>
+                  <th>Data de Pagamento</th>
+                  <th>Forma de Pagamento</th>
+                  <th>Valor Pago</th>
+                  <th style={{width:'80px'}}>Ação</th>
                 </tr>
               </thead>
               <tbody>
                 {aPIData.map((product, index) => (
                   <tr key={product.id}>
-                    <td>{index + 1}</td>
-                    <td>{product.idCliente}</td>
-                    <td>{product.idVeiculo}</td>
+                    {/* <td>{index + 1}</td> */}
                     <td>{product.nomeMecanico}</td>
                     <td>{product.defeitoReclamado}</td>
                     <td>{product.diagnostico}</td>
-                    <td>{product.pagoEm}</td>
-                    <td></td>
+                    <td>{product.dataPgto}</td>
+                    <td>{product.formaPgto}</td>
+                    <td>{product.valorPgto}</td>
+                    <td>    
+                      <Link to={"/ordemDeServico/" + product.id} data-toggle="tooltip">
+                        <i class="material-icons">&#xE254;</i>
+                      </Link>
+
+                      <a
+                        onClick={() => deleteProduct(product.id)}
+                        data-toggle="tooltip"
+                        style={{ color: "red", cursor: 'pointer' }}
+                      >
+                        <i class="material-icons">&#xE872;</i>
+                      </a>
+</td>
                   </tr>
                 ))}
               </tbody>

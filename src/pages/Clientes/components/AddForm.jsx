@@ -1,76 +1,80 @@
+
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import {ClientesContext} from '../contexts/ClientesContext';
-import {useContext, useState} from 'react';
-
 import '../index.css'
 
+
+
 const AddForm = () =>{
-
-    const {addEmployee} = useContext(ClientesContext);
-
-    const [newEmployee, setNewEmployee] = useState({
-        name:"", email:"", phone:"", address:""
-    });
-
-    const onInputChange = (e) => {
-        setNewEmployee({...newEmployee,[e.target.name]: e.target.value})
-    }
-
-    const {name, email, phone, address} = newEmployee;
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addEmployee(name, email, phone, address);
-    }
-
+    const navigate = useNavigate();
+    const { register, handleSubmit, setValue, setFocus } = useForm();
+  
+    const onSubmit = async (data) => {
+      console.log(data);
+      await axios.post("http://localhost:5277/api/cliente", {
+        ...data,
+      });
+      navigate("/");
+    };
+  
      return (
-
-        <Form onSubmit={handleSubmit}>
-            <Form.Group>
-                <Form.Control
-                    type="text"
-                    placeholder="Name *"
-                    name="name"
-                    value={name}
-                    onChange = { (e) => onInputChange(e)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    type="email"
-                    placeholder="Email *"
-                    name="email"
-                    value={email}
-                    onChange = { (e) => onInputChange(e)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    as="textarea"
-                    placeholder="Address"
-                    rows={3}
-                    name="address"
-                    value={address}
-                    onChange = { (e) => onInputChange(e)}
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    type="text"
-                    placeholder="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange = { (e) => onInputChange(e)}
-                />
-            </Form.Group>
-            <Button variant="success" type="submit" block>
-                Add New Employee
-            </Button>
-        </Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="cpf "
+                name="cpf"
+                {...register("cpf")}
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="nomeCompleto "
+                name="nomeCompleto"
+                {...register("nomeCompleto")}
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="DataNasc"
+                name="DataNasc"
+                {...register("DataNasc")}
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="EnderecoCompleto"
+                name="EnderecoCompleto"
+                {...register("EnderecoCompleto")}
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="celular"
+                name="celular"
+                {...register("celular")}
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="email"
+                name="email"
+                {...register("email")}
+            />
+        </Form.Group>
+        <Button variant="success" type="submit" block>
+            Add New Employee
+        </Button>
+    </Form>
 
      )
 }

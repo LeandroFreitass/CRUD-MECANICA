@@ -24,32 +24,7 @@ const ClientesList = () => {
     
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-    //const handleShowAlert = () =>setShowAlert(true);
-
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [employeesPerPage] = useState(2)
-
-
-    // const showToastMessage = () => {
-    //     toast.success('Success Notification !', {
-    //         position: toast.POSITION.TOP_RIGHT
-    //     });
-    // };
-
-    // const handleShowAlert = () => {
-    //     setShowAlert(true);
-    //     setTimeout(()=> {
-    //         setShowAlert(false);
-    //     }, 2000)
-    // }
-
-    // useEffect(() => {
-    //     handleClose();
-
-    //     return () => {
-    //         showToastMessage();
-    //     }
-    // }, [sortedEmployees])
+   
 
     useEffect(() => {
         getProducts();
@@ -60,12 +35,13 @@ const ClientesList = () => {
         setAPIData(response.data);
       };
 
-    // const indexOfLastEmployee = currentPage * employeesPerPage;
-    // const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-    // const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-    // const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage);
 
-  
+      const deleteProduct = async (id) => {
+        await axios.delete(`http://localhost:5277/api/Cliente/${id}`);
+        getProducts();
+        
+    }
+
 
     return (
     <>
@@ -106,9 +82,17 @@ const ClientesList = () => {
                     <td >{item.email}</td>
                     <td >{item.enderecoCompleto}</td>
                     <td>
-                      <Link to={"/editMa/" + item.id} data-toggle="tooltip">
+                      <Link to={"/client/" + item.id} data-toggle="tooltip">
                         <i class="material-icons">&#xE254;</i>
                       </Link>
+
+                      <a
+                        onClick={() => deleteProduct(item.id)}
+                        data-toggle="tooltip"
+                        style={{ color: "red", cursor: 'pointer' }}
+                      >
+                        <i class="material-icons">&#xE872;</i>
+                      </a>
                     </td>
                   </tr>
                 ))}

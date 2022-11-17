@@ -1,75 +1,122 @@
+import React, { useState,useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import {VeiculosContext} from '../contexts/VeiculosContext';
-import {useContext, useState} from 'react';
 import '../index.css'
 
-const EditForm = ({theEmployee}) =>{
 
-    const id = theEmployee.id;
+const EditForm = () =>{
+    const [idCliente, setIdCliente] = useState('');
+    const [marca, setMarca] = useState('');
+    const [modelo, setModelo] = useState('');
+    const [placa, setPlaca] = useState('');
+    const [tamanho, setTamanho] = useState('');
+    const [ano, setAno] = useState('');
+    const [combustivel, setCombustivel] = useState('');
+  
+    const navigate = useNavigate();
+    const { id } = useParams();
 
-    const [name, setName] = useState(theEmployee.name);
-    const [email, setEmail] = useState(theEmployee.email);
-    const [address, setAddress] = useState(theEmployee.address);
-    const [phone, setPhone] = useState(theEmployee.phone);
-
-
-    const {updateEmployee} = useContext(VeiculosContext);
-
-    const updatedEmployee = {id, name, email, address, phone}
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        updateEmployee(id, updatedEmployee)
+    const updateProduct = async (e) => {
+        e.preventDefault(); 
+        await axios.put(`http://localhost:5277/api/Veiculo/${id}`,{
+            idCliente: idCliente,
+            marca: marca,
+            modelo: modelo,
+            placa: placa,
+            tamanho: tamanho,
+            ano: ano,
+            combustivel: combustivel,
+        });
+        navigate("/")
     }
 
+    useEffect(() => {
+        getProductById()
+      }, []);
+
+      const getProductById = async () => {
+        const response = await axios.get(`http://localhost:5277/api/Veiculo/${id}`);
+        setIdCliente(response.data.idCliente);
+        setMarca(response.data.marca);
+        setModelo(response.data.modelo);
+        setPlaca(response.data.placa);
+        setTamanho(response.data.tamanho);
+        setAno(response.data.ano);
+        setCombustivel(response.data.combustivel);
+    }
      return (
 
-        <Form onSubmit={handleSubmit}>
-            <Form.Group>
-                <Form.Control
-                    type="text"
-                    placeholder="Name *"
-                    name="name"
-                    value={name}
-                    onChange={(e)=> setName(e.target.value)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    type="email"
-                    placeholder="Email *"
-                    name="email"
-                    value={email}
-                    onChange={(e)=> setEmail(e.target.value)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    as="textarea"
-                    placeholder="Address"
-                    rows={3}
-                    name="address"
-                    value={address}
-                    onChange={(e)=> setAddress(e.target.value)}
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    type="text"
-                    placeholder="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange={(e)=> setPhone(e.target.value)}
-                />
-            </Form.Group>
-            <Button variant="success" type="submit" block>
-                Edit Employee
-            </Button>
-        </Form>
+        <Form onSubmit={updateProduct}>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="idCliente "
+                name="idCliente"
+                value={idCliente}
+                onChange={ (e) => setIdCliente(e.target.value) }
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="marca "
+                name="marca"
+                value={marca}
+                onChange={ (e) => setMarca(e.target.value) }
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="modelo"
+                name="modelo"
+                value={modelo}
+                onChange={ (e) => setModelo(e.target.value) }
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="placa"
+                name="placa"
+                value={placa}
+                onChange={ (e) => setPlaca(e.target.value) }
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="tamanho"
+                name="tamanho"
+                value={tamanho}
+                onChange={ (e) => setTamanho(e.target.value) }
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="ano"
+                name="ano"
+                value={ano}
+                onChange={ (e) => setAno(e.target.value) }
+            />
+        </Form.Group>
+        <Form.Group>
+            <Form.Control
+                type="text"
+                placeholder="combustivel"
+                name="combustivel"
+                value={combustivel}
+                onChange={ (e) => setCombustivel(e.target.value) }
+            />
+        </Form.Group>
+        <Button variant="success" type="submit" block>
+            editar
+        </Button>
+    </Form>
 
      )
 }

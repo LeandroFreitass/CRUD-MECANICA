@@ -20,21 +20,9 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <FaCar />
 	},
 	{
-		key: 'mecanico',
-		label: 'Cadastro Mecanicos',
-		path: '/mecanico',
-		icon: <FaToolbox />
-	},
-	{
-		key: 'defeitoseserviços',
-		label: 'Defeitos e Serviços',
-		path: '/DefeitoseServiços',
-		icon: <FaCarCrash />
-	},
-	{
-		key: 'orcamentos',
-		label: 'Orçamentos',
-		path: '/orcamentos',
+		key: 'ordemDeServico',
+		label: 'Ordem De Serviço',
+		path: '/ordemDeServico',
 		icon: <FaMoneyBill />
 	},
 
