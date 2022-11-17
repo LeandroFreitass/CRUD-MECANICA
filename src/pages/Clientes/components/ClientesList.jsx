@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import '../index.css'
 import { Link } from 'react-router-dom';
+import { cpfMask, phoneMask } from '../../../components/maskara/mask';
 
 const ClientesList = () => {
 
@@ -61,7 +62,7 @@ const ClientesList = () => {
             <table class="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  {/* <th>ID</th> */}
                   <th>Nome</th>
                   <th>CPF</th>
                   <th>Data Nascimento</th>
@@ -74,11 +75,11 @@ const ClientesList = () => {
               <tbody>
                 {aPIData.map((item, index) => (
                   <tr key={item.id}>
-                    <td>{index + 1}</td>
+                    {/* <td>{index + 1}</td> */}
                     <td >{item.nomeCompleto}</td>
-                    <td >{item.cpf}</td>
+                    <td >{cpfMask(item.cpf)}</td>
                     <td >{item.dataNasc}</td>
-                    <td >{item.celular}</td>
+                    <td >{phoneMask(item.celular)}</td>
                     <td >{item.email}</td>
                     <td >{item.enderecoCompleto}</td>
                     <td>

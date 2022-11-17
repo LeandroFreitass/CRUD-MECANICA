@@ -18,7 +18,7 @@ const AddForm = () =>{
       await axios.post("http://localhost:5277/api/Veiculo", {
         ...data,
       });
-      navigate("/");
+      navigate("/veiculos");
     };
   
   

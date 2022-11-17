@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../index.css'
+import { phoneMask } from "../../../components/maskara/mask";
+import { IMaskInput } from "react-imask";
+import InputMask from "react-input-mask";
+
 
 
 
@@ -18,7 +22,7 @@ const AddForm = () =>{
       await axios.post("http://localhost:5277/api/cliente", {
         ...data,
       });
-      navigate("/");
+      navigate("/clientes");
     };
   
      return (
@@ -41,7 +45,7 @@ const AddForm = () =>{
         </Form.Group>
         <Form.Group>
             <Form.Control
-                type="text"
+                type="date"
                 placeholder="DataNasc"
                 name="DataNasc"
                 {...register("DataNasc")}
@@ -60,6 +64,7 @@ const AddForm = () =>{
                 type="text"
                 placeholder="celular"
                 name="celular"
+                maxLength={11}
                 {...register("celular")}
             />
         </Form.Group>

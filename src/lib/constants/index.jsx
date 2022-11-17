@@ -1,11 +1,11 @@
-import { FaCar, FaHome, FaUser, FaToolbox, FaMoneyBill, FaCarCrash } from 'react-icons/fa';
+import { FaCar, FaHome, FaUser, FaMoneyBill, FaTicketAlt} from 'react-icons/fa';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'home',
-		label: 'Home',
+		label: 'Ticket',
 		path: '/',
-		icon: <FaHome />
+		icon: <FaTicketAlt />
 	},
 	{
 		key: 'clientes',

@@ -16,7 +16,7 @@ const AddForm = () =>{
       await axios.post("http://localhost:5277/api/OrdemDeServico", {
         ...data,
       });
-      navigate("/");
+      navigate("/ordemDeServico");
     };
 
      return (

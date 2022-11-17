@@ -1,6 +1,6 @@
 import React from 'react'
 import ClientesList from './components/ClientesList';
-import ClientesContextProvider from './contexts/ClientesContext';
+// import ClientesContextProvider from './contexts/ClientesContext';
 import './index.css'
 
 export default function Clientes() {
@@ -8,9 +8,9 @@ export default function Clientes() {
 	    <div className="container-xl">
       <div className="table-responsive">
         <div className="table-wrapper">
-          <ClientesContextProvider>
+          
             <ClientesList />
-          </ClientesContextProvider>
+        
         </div>
       </div>
     </div>
