@@ -47,8 +47,11 @@ const EditForm = () =>{
 
      return (
 
+    <div className="content-list-employees-main" style={{background:'white', width:'1250px', height:'200px', borderRadius:'10px'}}>
         <Form onSubmit={updateProduct}>
-            <Form.Group>
+         <div className="first-line-type-date" style={{margin:'10px 0px 10px 10px'}}>
+            <div className="first-line-corretion-size">
+             <Form.Group >
                 <Form.Control
                     type="text"
                     placeholder="cpf *"
@@ -57,26 +60,34 @@ const EditForm = () =>{
                     onChange={ (e) => setCpf(e.target.value) }
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="first-line-corretion-size">
+            <Form.Group style={{width:'230px'}}>
                 <Form.Control
                     type="text"
-                    placeholder="nomeCompleto *"
+                    placeholder="Nome Completo *"
                     name="nomeCompleto"
                     value={nomeCompleto}
                     onChange={(e)=> setNomeCompleto(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="first-line-corretion-size">
+            <Form.Group style={{width:'110px',margin: '0px 0px 0px 50px'}}>
                 <Form.Control
                      type="text"
                     placeholder="DataNasc"
-                    rows={3}
                     name="DataNasc"
                     value={dataNasc}
                     onChange={(e)=> setDataNasc(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            </div>
+    
+        <div className="second-line-type-date" style={{margin:'0px 0px 10px 10px'}}>
+            <div className="second-line-corretion-size">
+            <Form.Group style={{width:'680px'}}>
                 <Form.Control
                     type="text"
                     placeholder="EnderecoCompleto"
@@ -85,7 +96,10 @@ const EditForm = () =>{
                     onChange={(e)=> setEnderecoCompleto(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="second-line-corretion-size">
+
+            <Form.Group style={{width:'180px',margin: '0px 0px 0px 498px'}}>
                 <Form.Control
                     type="text"
                     placeholder="celular"
@@ -94,7 +108,9 @@ const EditForm = () =>{
                     onChange={(e)=> setCelular(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="second-line-corretion-size">
+            <Form.Group style={{width:'350px',margin: '0px 0px 0px 500px'}}>
                 <Form.Control
                     type="text"
                     placeholder="celular"
@@ -103,10 +119,16 @@ const EditForm = () =>{
                     onChange={(e)=> setEmail(e.target.value)}
                 />
             </Form.Group>
+            </div>
+            </div>
+            <div className="second-line-corretion-size" style={{margin: '0px 0px 0px 1110px'}}>
             <Button variant="success" type="submit" block>
                 Edit Employee
             </Button>
+            </div>
         </Form>
+
+            </div>
 
      )
 }

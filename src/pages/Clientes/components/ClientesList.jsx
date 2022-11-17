@@ -1,13 +1,10 @@
 import { Modal, Button, Alert} from 'react-bootstrap';
 import {useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import {ClientesContext} from '../contexts/ClientesContext';
-import Employee from './Clientes';
 import AddForm from './AddForm';
-import Pagination from './Pagination';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaUser } from 'react-icons/fa';
+import { FaUser,FaTrash, FaEdit  } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import '../index.css'
@@ -15,15 +12,18 @@ import { Link } from 'react-router-dom';
 
 const ClientesList = () => {
 
-    // const {sortedEmployees} = useContext(VeiculosContext);
     const [aPIData, setAPIData] = useState([])
 
-    const [showAlert, setShowAlert] = useState(false);
+
+    const [abrindo, setAbrindo] = useState(false);
 
     const [show, setShow] = useState(false);
     
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+   
+    const tentativaAbrir = () => setAbrindo(true);
+    const tentativaFechar = () => setAbrindo(false);
    
 
     useEffect(() => {
@@ -83,7 +83,7 @@ const ClientesList = () => {
                     <td >{item.enderecoCompleto}</td>
                     <td>
                       <Link to={"/client/" + item.id} data-toggle="tooltip">
-                        <i class="material-icons">&#xE254;</i>
+                        <FaEdit/>
                       </Link>
 
                       <a
@@ -91,7 +91,7 @@ const ClientesList = () => {
                         data-toggle="tooltip"
                         style={{ color: "red", cursor: 'pointer' }}
                       >
-                        <i class="material-icons">&#xE872;</i>
+                        <FaTrash/>
                       </a>
                     </td>
                   </tr>
@@ -101,12 +101,26 @@ const ClientesList = () => {
           </div>
         </div>
 
-    {/* <Pagination pages = {totalPagesNum}
-                setCurrentPage={setCurrentPage}
-                currentEmployees ={currentEmployees}
-                sortedEmployees = {sortedEmployees} /> */}
 
     <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+            <Modal.Title>
+                Add Employee
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <AddForm />
+        </Modal.Body>
+        <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close Button
+                </Button>
+        </Modal.Footer>
+    </Modal>
+
+
+
+    <Modal show={abrindo} onHide={handleClose}>
         <Modal.Header closeButton>
             <Modal.Title>
                 Add Employee

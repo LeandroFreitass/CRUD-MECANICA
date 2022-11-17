@@ -56,83 +56,111 @@ const EditForm = () =>{
 
      return (
 
+        <div className="content-list-employees-main" style={{background:'white', width:'950px', height:'200px', borderRadius:'10px',margin: '0px 0px 0px 150px'}}>
         <Form onSubmit={updateProduct}>
-            <Form.Group>
+         <div className="first-line-type-date" style={{margin:'10px 0px 10px 10px'}}>
+            <div className="first-line-corretion-size">
+             <Form.Group >
                 <Form.Control
                     type="text"
-                    placeholder="idCliente *"
-                    name="idCliente"
+                    placeholder="cpf *"
+                    name="cpf"
                     value={idCliente}
                     onChange={ (e) => setIdCliente(e.target.value) }
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="first-line-corretion-size">
+            <Form.Group style={{width:'230px'}}>
                 <Form.Control
                     type="text"
-                    placeholder="idVeiculo *"
-                    name="idVeiculo"
+                    placeholder="Nome Completo *"
+                    name="nomeCompleto"
                     value={idVeiculo}
                     onChange={(e)=> setIdVeiculo(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="first-line-corretion-size">
+            <Form.Group style={{width:'110px',margin: '0px 0px 0px 50px'}}>
                 <Form.Control
                      type="text"
-                    placeholder="nomeMecanico"
-                    name="nomeMecanico"
+                    placeholder="DataNasc"
+                    name="DataNasc"
                     value={nomeMecanico}
                     onChange={(e)=> setNomeMecanico(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            </div>
+    
+        <div className="second-line-type-date" style={{margin:'0px 0px 10px 10px'}}>
+            <div className="second-line-corretion-size">
+            <Form.Group style={{width:'220px'}}>
                 <Form.Control
                     type="text"
-                    placeholder="defeitoReclamado"
-                    name="defeitoReclamado"
+                    placeholder="EnderecoCompleto"
+                    name="EnderecoCompleto"
                     value={defeitoReclamado}
                     onChange={(e)=> setDefeitoReclamado(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="second-line-corretion-size">
+
+            <Form.Group style={{width:'180px',margin: '0px 0px 0px 40px'}}>
                 <Form.Control
                     type="text"
-                    placeholder="diagnostico"
-                    name="diagnostico"
+                    placeholder="celular"
+                    name="celular"
                     value={diagnostico}
                     onChange={(e)=> setDiagnostico(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="second-line-corretion-size">
+            <Form.Group style={{width:'150px',margin: '0px 0px 0px 40px'}}>
                 <Form.Control
                     type="text"
-                    placeholder="DataPgto"
-                    name="DataPgto"
+                    placeholder="celular"
+                    name="email"
                     value={dataPgto}
                     onChange={(e)=> setDataPgto(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+            <div className="second-line-corretion-size">
+            <Form.Group style={{width:'350px',margin: '0px 0px 0px 10px'}}>
                 <Form.Control
                     type="text"
-                    placeholder="FormaPgto"
-                    name="FormaPgto"
+                    placeholder="celular"
+                    name="email"
                     value={formaPgto}
                     onChange={(e)=> setFormaPgto(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group>
+            </div>
+
+            <div className="second-line-corretion-size">
+            <Form.Group style={{width:'350px',margin: '0px 0px 0px 500px'}}>
                 <Form.Control
                     type="text"
-                    placeholder="ValorPgto"
-                    name="ValorPgto"
+                    placeholder="celular"
+                    name="email"
                     value={valorPgto}
                     onChange={(e)=> setValorPgto(e.target.value)}
                 />
             </Form.Group>
+            </div>
+            </div>
+            <div className="second-line-corretion-size" style={{margin: '0px 0px 0px 810px'}}>
             <Button variant="success" type="submit" block>
                 Edit Employee
             </Button>
+            </div>
         </Form>
+
+            </div>
 
      )
 }

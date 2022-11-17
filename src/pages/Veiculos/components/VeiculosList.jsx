@@ -7,7 +7,7 @@ import AddForm from './AddForm';
 // import Pagination from './Pagination';
 // import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaCar } from 'react-icons/fa';
+import { FaCar,FaTrash, FaEdit } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import '../index.css'
@@ -62,11 +62,12 @@ const EmployeeList = () => {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>IDCliente</th>
                   <th>Marca</th>
                   <th>Modelo</th>
                   <th>placa</th>
                   <th>Tipo</th>
+                  <th>Ano Fab.</th>
+                  <th>Tipo Cob.</th>
                   <th>Ação</th>
                 </tr>
               </thead>
@@ -74,15 +75,16 @@ const EmployeeList = () => {
                 {aPIData.map((product, index) => (
                   <tr key={product.id}>
                     <td>{index + 1}</td>
-                    <td>{product.idCliente}</td>
                     <td>{product.marca}</td>
                     <td>{product.modelo}</td>
                     <td>{product.placa}</td>
                     <td>{product.tamanho}</td>
+                    <td>{product.ano}</td>
+                    <td>{product.combustivel}</td>
                     <td>
 
                     <Link to={"/editMa/" + product.id} data-toggle="tooltip">
-                        <i class="material-icons">&#xE254;</i>
+                    <FaEdit/>
                       </Link>
                       
                       <a
@@ -90,7 +92,7 @@ const EmployeeList = () => {
                         data-toggle="tooltip"
                         style={{ color: "red", cursor: 'pointer' }}
                       >
-                        <i class="material-icons">&#xE872;</i>
+                         <FaTrash/>
                       </a>
                     </td>
                   </tr>

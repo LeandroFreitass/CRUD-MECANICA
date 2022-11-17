@@ -7,7 +7,7 @@ import AddForm from './AddForm';
 import Pagination from './Pagination';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaMoneyBill } from 'react-icons/fa';
+import { FaMoneyBill, FaTrash, FaEdit  } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import '../index.css'
@@ -15,41 +15,12 @@ import { Link } from 'react-router-dom';
 
 const EmployeeList = () => {
 
-    // const {sortedEmployees} = useContext(VeiculosContext);
     const [aPIData, setAPIData] = useState([])
-
-    const [showAlert, setShowAlert] = useState(false);
-
+    
     const [show, setShow] = useState(false);
     
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-    //const handleShowAlert = () =>setShowAlert(true);
-
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [employeesPerPage] = useState(2)
-
-
-    // const showToastMessage = () => {
-    //     toast.success('Success Notification !', {
-    //         position: toast.POSITION.TOP_RIGHT
-    //     });
-    // };
-
-    // const handleShowAlert = () => {
-    //     setShowAlert(true);
-    //     setTimeout(()=> {
-    //         setShowAlert(false);
-    //     }, 2000)
-    // }
-
-    // useEffect(() => {
-    //     handleClose();
-
-    //     return () => {
-    //         showToastMessage();
-    //     }
-    // }, [sortedEmployees])
 
     useEffect(() => {
         getProducts();
@@ -85,7 +56,6 @@ const EmployeeList = () => {
             <table class="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
-                  {/* <th>ID</th> */}
                   <th>Nome Mecanico</th>
                   <th>Defeito Reclamado</th>
                   <th>Diagnostico</th>
@@ -98,7 +68,6 @@ const EmployeeList = () => {
               <tbody>
                 {aPIData.map((product, index) => (
                   <tr key={product.id}>
-                    {/* <td>{index + 1}</td> */}
                     <td>{product.nomeMecanico}</td>
                     <td>{product.defeitoReclamado}</td>
                     <td>{product.diagnostico}</td>
@@ -107,7 +76,7 @@ const EmployeeList = () => {
                     <td>{product.valorPgto}</td>
                     <td>    
                       <Link to={"/ordemDeServico/" + product.id} data-toggle="tooltip">
-                        <i class="material-icons">&#xE254;</i>
+                      <FaEdit/>
                       </Link>
 
                       <a
@@ -115,7 +84,7 @@ const EmployeeList = () => {
                         data-toggle="tooltip"
                         style={{ color: "red", cursor: 'pointer' }}
                       >
-                        <i class="material-icons">&#xE872;</i>
+                        <FaTrash/>
                       </a>
 </td>
                   </tr>
@@ -125,10 +94,6 @@ const EmployeeList = () => {
           </div>
         </div>
 
-    {/* <Pagination pages = {totalPagesNum}
-                setCurrentPage={setCurrentPage}
-                currentEmployees ={currentEmployees}
-                sortedEmployees = {sortedEmployees} /> */}
 
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
