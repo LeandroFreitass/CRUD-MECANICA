@@ -10,8 +10,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import '../index.css'
 import { Link } from 'react-router-dom';
 import { cpfMask, phoneMask } from '../../../components/maskara/mask';
+import UserService  from '../../../services/UserService';
 
-const ClientesList = () => {
+const title = "Cadastro de Alunos";
+
+export default function ClientesList() {
+
+  
 
     const [aPIData, setAPIData] = useState([])
 
@@ -26,9 +31,24 @@ const ClientesList = () => {
     const tentativaAbrir = () => setAbrindo(true);
     const tentativaFechar = () => setAbrindo(false);
    
+     const [lista, setLista] = useState([]);
+     const [mens, setMens] = useState([]);
 
     useEffect(() => {
         getProducts();
+        UserService.getMecanicoBoard().then(
+          (response) => {
+            console.log("useEffect getMecanicoBoard" + response.data)
+            setLista(response.data);
+            setMens(null);
+          },
+          (error) => {
+            const _mens =
+            (error.response && error.response.data && error.response.data.message) ||
+            error.message || error.toString(); setMens(_mens); console.log("_mens: " + _mens);
+          }
+      
+        );
       }, []);
       
       const getProducts = async () => {
@@ -46,6 +66,7 @@ const ClientesList = () => {
 
     return (
     <>
+    if(UserService.)
     <div className="table-title">
         <div className="row">
             <div className="col-sm-6">
@@ -137,8 +158,15 @@ const ClientesList = () => {
         </Modal.Footer>
     </Modal>
     </>
+
     )
 
 }
 
-export default ClientesList;
+
+return(
+  <div title={title}>
+{(mens) ? "Problema com conexão ou autorização (contactar administrador)." : renderTable()}
+
+</div>
+)

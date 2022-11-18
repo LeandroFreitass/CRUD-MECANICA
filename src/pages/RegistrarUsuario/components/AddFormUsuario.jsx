@@ -15,16 +15,6 @@ export default function AddFormUsuario() {
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-useEffect{
-    axios.(urlAPI, {headers: {Authorization: 'Bearer' + user.token}})
-    .then.setState({lista_usuario: resp.data });
-},
-(error) => { const _mens = (error.response &&
-     error.response.data && 
-     error.response.data.message) ||
-      error.message || error.toString();
-    this.setState({mens: _mens});
-}
 
 render(){
     return(

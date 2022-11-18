@@ -74,7 +74,7 @@ return (
                  value={password}
                  placeholder="Digite a senha"
                  className="inputAuth"
-                 onChange={({ t } => { handleChangePassword(t)})}
+                 
                 />  
                     </div>
 
