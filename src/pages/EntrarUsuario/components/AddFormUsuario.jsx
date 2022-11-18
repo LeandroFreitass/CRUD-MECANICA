@@ -56,24 +56,7 @@ const AddFormUsuario = () =>{
                 maxLength={10}
                 {...register("senha")}
             />
-        </Form.Group>
-        <Form.Group>
-            <Form.Control
-                type="text"
-                placeholder="role"
-                name="role"
-                {...register("role")}
-            />
-        </Form.Group>
-            <Form.Group>
-            <Form.Control
-                type="text"
-                placeholder="email"
-                name="email"
-                maxLength={100}
-                {...register("email")}
-            />
-        </Form.Group>
+           </Form.Group>
         <Button variant="success" type="submit" block onClick={ refreshPage }>
             Fazer login/entrar
         </Button>
