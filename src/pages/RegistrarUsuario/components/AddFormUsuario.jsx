@@ -60,7 +60,7 @@ const AddFormUsuario = () =>{
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="escolha entre o perfil de cliente ou de mecanico"
+                placeholder="role"
                 name="role"
                 {...register("role")}
             />
@@ -68,7 +68,7 @@ const AddFormUsuario = () =>{
             <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="email@example.com"
+                placeholder="email"
                 name="email"
                 maxLength={100}
                 {...register("email")}

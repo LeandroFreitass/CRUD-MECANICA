@@ -75,7 +75,7 @@ const EditForm = () =>{
             <Form.Group style={{width:'110px',margin: '0px 0px 0px 50px'}}>
                 <Form.Control
                      type="text"
-                    placeholder="cliente ou mecanico"
+                    placeholder="role "
                     name="role"
                     value={role}
                     onChange={(e)=> setRole(e.target.value)}
@@ -85,17 +85,7 @@ const EditForm = () =>{
             </div>
     
         <div className="second-line-type-date" style={{margin:'0px 0px 10px 10px'}}>
-            <div className="second-line-corretion-size">
-            <Form.Group style={{width:'680px'}}>
-                <Form.Control
-                    type="text"
-                    placeholder="true ou false"
-                    name="isMecanico"
-                    value={isMecanico}
-                    onChange={(e)=> setIsMecanico(e.target.value)}
-                />
-            </Form.Group>
-            </div>
+    
             <div className="second-line-corretion-size">
             <Form.Group style={{width:'350px',margin: '0px 0px 0px 500px'}}>
                 <Form.Control
