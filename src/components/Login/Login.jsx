@@ -5,7 +5,7 @@ import "./Login.css";
 
 import AuthService from "../services/AuthService";
 
-export default funcion Login() {
+export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage]   = useState("");
