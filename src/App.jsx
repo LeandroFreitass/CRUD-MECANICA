@@ -29,15 +29,15 @@ function App() {
     return (
         <Router>
             <Routes>
-                {currentUser ? (<Route path="/" element={<Layout />}/>) : (<Route path="/" element={<h1>"Tickets de OS"</h1><div> Não autorizado! </div>}/>)}
+                {currentUser ? (<Route path="/" element={<Layout />}/>) : (<Route path="/" element={<h1>"Tickets de OS"</h1><h2> Não autorizado! </h2>}/>)}
                     <Route index element={<Dashboard />} />
-                {currentUser ?( <Route path="clientes" element={<Clientes />} />) : (<Route path="clientes" element={<h1>"Lista de clientes"</h1><div> Não autorizado! </div>} />)}
+                {currentUser ?( <Route path="clientes" element={<Clientes />} />) : (<Route path="clientes" element={<h1>"Lista de clientes"</h1><h2> Não autorizado! </h2>} />)}
                     <Route path="veiculos" element={<Veiculos />} />
-                    {currentUser ? (<Route path="ordemDeServico" element={<OrdemDeServico />}/>): (<Route path="ordemDeServico" element={<h1>"Ordens de Serviço"</h1><div>Não autorizado!</div>}/>)}
-                    {currentUser ? (<Route path="/editMa/:id" element={<EditForm />} />) :(<Route path="/editMa/:id" element={<h1>"Edição de veículos"</h1><div>Não autorizado! </div>} />)}
-                    {currentUser ? (<Route path="/client/:id" element={<EditFormClient />}/>) : (<Route path="/client/:id" element={<h1>"Edição de cliente!"</h1><div>Não autorizado! </div>}/>) }
-                    {currentUser ? (<Route path="/ordemDeServico/:id" element={<EditFormOrcamentos />} />) : (<Route path="/ordemDeServico/:id" element={<h1> "Listagem da ordem de servico"</h1><div> Não autorizado! </div>}/>)}
-                    {currentUser ? (<Route path="usuarios" element={<Usuarios />}/>) : (<Route path="usuarios" element={<h1>Ecossistema de configurações do Usuário</h1><div> Não autorizado! </div>}/>)}
+                    {currentUser ? (<Route path="ordemDeServico" element={<OrdemDeServico />}/>): (<Route path="ordemDeServico" element={<h1>"Ordens de Serviço"</h1><h2>Não autorizado!</h2>}/>)}
+                    {currentUser ? (<Route path="/editMa/:id" element={<EditForm />} />) :(<Route path="/editMa/:id" element={<h1>"Edição de veículos"</h1><h2>Não autorizado! </h2>} />)}
+                    {currentUser ? (<Route path="/client/:id" element={<EditFormClient />}/>) : (<Route path="/client/:id" element={<h1>"Edição de cliente!"</h1><h2>Não autorizado! </h2>}/>) }
+                    {currentUser ? (<Route path="/ordemDeServico/:id" element={<EditFormOrcamentos />} />) : (<Route path="/ordemDeServico/:id" element={<h1> "Listagem da ordem de servico"</h1><h2> Não autorizado! </h2>}/>)}
+                    {currentUser ? (<Route path="usuarios" element={<Usuarios />}/>) : (<Route path="usuarios" element={<h1>Ecossistema de configurações do Usuário</h1><h2> Não autorizado! </h2>}/>)}
                     <Route path="registrarUsuario" element={<RegistrarUsuario />}/>
                     
                     {currentUser? (<Route path="logout" element={<Logout/>}/>) : (<Route path="login" element={<Login/>}/>) }
