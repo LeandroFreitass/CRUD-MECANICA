@@ -43,7 +43,7 @@ const EmployeeList = () => {
     <div className="table-title">
         <div className="row">
             <div className="col-sm-6">
-                <h2>Cadastro de <b>Veiculos</b></h2>
+                <h2>Cadastro de <b>Ordens de Serviços</b></h2>
             </div>
             <div className="col-sm-6">
                 <Button onClick={handleShow} className="btn btn-success" data-toggle="modal"><FaMoneyBill style={{display:'inline-flex', margin:'0px 0px 0px 10px'}}/> <span>Cadastro</span></Button>					
@@ -61,7 +61,7 @@ const EmployeeList = () => {
                   <th>Diagnostico</th>
                   <th>Data de Pagamento</th>
                   <th>Forma de Pagamento</th>
-                  <th>Valor Pago</th>
+                  <th>Valor Pago(R$)</th>
                   <th style={{width:'80px'}}>Ação</th>
                 </tr>
               </thead>

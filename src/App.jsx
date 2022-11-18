@@ -7,8 +7,8 @@ import OrdemDeServico from './pages/Orcamentos'
 import EditForm from './pages/Veiculos/components/EditForm'
 import EditFormClient from './pages/Clientes/components/EditForm'
 import EditFormOrcamentos from './pages/Orcamentos/components/EditForm'
-
-
+import Usuarios from './pages/Usuarios'
+import RegistrarUsuario from './pages/RegistrarUsuario'
 
 
 
@@ -24,9 +24,10 @@ function App() {
                     <Route path="/editMa/:id" element={<EditForm />} />
                     <Route path="/client/:id" element={<EditFormClient />} />
                     <Route path="/ordemDeServico/:id" element={<EditFormOrcamentos />} />
-
-
-                </Route>
+                    <Route path="usuarios" element={<Usuarios />}/>
+                    <Route path="registrarUsuario" element={<RegistrarUsuario />}/>
+                    
+           </Route>
                 <Route path="/register" element={<OrdemDeServico />} />
             </Routes>
         </Router>

@@ -13,7 +13,7 @@ import InputMask from "react-input-mask";
 
 
 
-const AddForm = () =>{
+const AddFormLogar = () =>{
     const navigate = useNavigate();
     const { register, handleSubmit, setValue, setFocus } = useForm();
   
@@ -21,70 +21,74 @@ const AddForm = () =>{
         window.location.reload(); 
     }
     const onSubmit = async (data) => {
-      await axios.post("http://localhost:5277/api/Cliente", {
+      await axios.post("http://localhost:5277/api/Home/login", {
         ...data,
       });
-      navigate("/clientes");
+      navigate("/logar");
     };
   
      return (
+        <>
+        <div className="table-title">
+        <div className="row">
+            <div className="col-sm-6">
+                <h2>Fazer <b> Login no Sistema L&L Motors! </b></h2>
+                <br/><br/>
+                </div>
+               </div> 
+               </div>
         <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="cpf "
-                name="cpf"
-                maxLength={11}
-                {...register("cpf")}
+                placeholder="username "
+                name="username"
+                maxLength={15}
+                {...register("username")}
             />
         </Form.Group>
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="nome Completo "
-                name="nomeCompleto"
-                {...register("nomeCompleto")}
-            />
-        </Form.Group>
-        <Form.Group>
-            <Form.Control
-                type="date"
-                placeholder="Data Nasc."
-                name="DataNasc"
-                {...register("DataNasc")}
+                placeholder="senha "
+                name="senha"
+                minLength={8}
+                maxLength={10}
+                {...register("senha")}
             />
         </Form.Group>
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="Endereco Completo"
-                name="EnderecoCompleto"
-                {...register("EnderecoCompleto")}
+                placeholder="escolha entre o perfil de cliente ou de mecanico"
+                name="role"
+                {...register("role")}
             />
         </Form.Group>
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="celular"
-                name="celular"
-                maxLength={11}
-                {...register("celular")}
+                placeholder=" digite {sim} ou {nao} para sabermos se é um mecanico"
+                name="isMecanico"
+                {...register("isMecanico")}
             />
         </Form.Group>
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="email"
+                placeholder="email@example.com"
                 name="email"
+                maxLength={100}
                 {...register("email")}
             />
         </Form.Group>
         <Button variant="success" type="submit" block onClick={ refreshPage }>
-            Adicionar Clientes
+           Entrar no sistema 
         </Button>
     </Form>
+   </>
 
      )
 }
 
-export default AddForm;
+export default AddFormUsuario;

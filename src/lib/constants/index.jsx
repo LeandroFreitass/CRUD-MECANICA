@@ -29,16 +29,24 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
+	
 	{
-		key: 'settings',
-		label: 'Settings',
-		path: '/settings',
+		key: 'logar',
+		label: 'Fazer login',
+		path: '/logar',
 		icon: <FaCar />
 	},
 	{
-		key: 'support',
-		label: 'Help & Support',
-		path: '/support',
+		key: 'registrarUsuario',
+		label: 'Registrar-se',
+		path: '/registrarusuario',
+		icon: <FaCar />
+	},
+	
+	{
+		key: 'usuarios',
+		label: 'Config Usuario',
+		path: '/usuarios',
 		icon: <FaCar />
 	}
 ]
