@@ -32,7 +32,7 @@ export function Index() {
 	
 	]
 	
- DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
+  const DASHBOARD_SIDEBAR_BOTTOM_LINKS = () => [
 	
 		const [currentUser, setCurrentUser] = useState(undefined);
 	
