@@ -3,7 +3,7 @@ import { useNavigate } from "route-router";
 
 import "./Login.css";
 
-import AuthService from "../services/AuthService";
+import AuthService from "./components/services/AuthService";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -49,8 +49,8 @@ return (
                  value={username}
                  placeholder="Digite o e-mail"
                  className="inputAuth"
-                 onChange={({ target } => { 
-                    setUsername(target.value);
+                 onChange={({ e } => { 
+                    setUsername(e.target.value);
                     })}
                 />
                 </div>
@@ -62,7 +62,7 @@ return (
                  value={password}
                  placeholder="Digite a senha"
                  className="inputAuth"
-                 onChange={({ target } => { setPassword(target.value);})}
+                 onChange={({ e } => { setPassword(e.target.value);})}
                 />  
                     </div>
 

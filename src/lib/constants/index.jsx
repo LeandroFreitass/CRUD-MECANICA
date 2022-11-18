@@ -1,10 +1,10 @@
 import { FaCar, FaHome, FaUser, FaMoneyBill, FaTicketAlt} from 'react-icons/fa';
-import AuthService from './services/AuthService'
+import AuthService from "./components/services/AuthService"
 
 
 export function Index() {
 
-	export const DASHBOARD_SIDEBAR_LINKS = [
+	const DASHBOARD_SIDEBAR_LINKS = [
 		{
 			key: 'home',
 			label: 'Ticket',

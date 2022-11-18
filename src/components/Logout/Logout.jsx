@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import AuthService from "../services/AuthService";
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router";
 
 
 export default function Logout() {

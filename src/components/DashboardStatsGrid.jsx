@@ -26,7 +26,7 @@ export default function DashboardStatsGrid() {
             {aPIData.map((item, index) => (
                 <Card style={{ width: '30rem', display:'inline-flex', margin: '10px 0px 0px 10px'}}>
                     <Card.Body>
-                        <Card.Title> Mecanico responasavel - {item.nomeMecanico}</Card.Title>
+                        <Card.Title> Mecanico responsavel - {item.nomeMecanico}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted" style={{fontWeight:'bold'}}> Numero do Veiculo - {item.idVeiculo}</Card.Subtitle>
                         <Card.Text>
                                    <view style={{color:'red'}}>Diagnostico informado pelo mecanico</view> - {item.diagnostico}
