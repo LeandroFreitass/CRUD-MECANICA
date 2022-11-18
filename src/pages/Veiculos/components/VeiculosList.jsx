@@ -106,7 +106,7 @@ const EmployeeList = () => {
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
             <Modal.Title>
-                Add Employee
+            Adicionar Veiculos
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -114,7 +114,8 @@ const EmployeeList = () => {
         </Modal.Body>
         <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                    Close Button
+                Fechar Modal
+
                 </Button>
         </Modal.Footer>
     </Modal>

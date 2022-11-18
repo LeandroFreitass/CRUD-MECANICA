@@ -17,8 +17,10 @@ const AddForm = () =>{
     const navigate = useNavigate();
     const { register, handleSubmit, setValue, setFocus } = useForm();
   
+    function refreshPage(){ 
+        window.location.reload(); 
+    }
     const onSubmit = async (data) => {
-      console.log(data);
       await axios.post("http://localhost:5277/api/cliente", {
         ...data,
       });
@@ -32,13 +34,14 @@ const AddForm = () =>{
                 type="text"
                 placeholder="cpf "
                 name="cpf"
+                maxLength={11}
                 {...register("cpf")}
             />
         </Form.Group>
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="nomeCompleto "
+                placeholder="nome Completo "
                 name="nomeCompleto"
                 {...register("nomeCompleto")}
             />
@@ -46,7 +49,7 @@ const AddForm = () =>{
         <Form.Group>
             <Form.Control
                 type="date"
-                placeholder="DataNasc"
+                placeholder="Data Nasc."
                 name="DataNasc"
                 {...register("DataNasc")}
             />
@@ -54,7 +57,7 @@ const AddForm = () =>{
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder="EnderecoCompleto"
+                placeholder="Endereco Completo"
                 name="EnderecoCompleto"
                 {...register("EnderecoCompleto")}
             />
@@ -76,8 +79,8 @@ const AddForm = () =>{
                 {...register("email")}
             />
         </Form.Group>
-        <Button variant="success" type="submit" block>
-            Add New Employee
+        <Button variant="success" type="submit" block onClick={ refreshPage }>
+            Adicionar Clientes
         </Button>
     </Form>
 

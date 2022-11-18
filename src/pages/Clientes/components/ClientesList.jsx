@@ -76,12 +76,12 @@ const ClientesList = () => {
                 {aPIData.map((item, index) => (
                   <tr key={item.id}>
                     {/* <td>{index + 1}</td> */}
-                    <td >{item.nomeCompleto}</td>
-                    <td >{cpfMask(item.cpf)}</td>
-                    <td >{item.dataNasc}</td>
-                    <td >{phoneMask(item.celular)}</td>
-                    <td >{item.email}</td>
-                    <td >{item.enderecoCompleto}</td>
+                    <td style={{fontSize:'12px'}}>{item.nomeCompleto}</td>
+                    <td style={{fontSize:'12px'}}>{cpfMask(item.cpf)}</td>
+                    <td style={{fontSize:'12px'}}>{item.dataNasc}</td>
+                    <td style={{fontSize:'12px'}}>{phoneMask(item.celular)}</td>
+                    <td style={{fontSize:'12px'}}>{item.email}</td>
+                    <td style={{fontSize:'12px'}}>{item.enderecoCompleto}</td>
                     <td>
                       <Link to={"/client/" + item.id} data-toggle="tooltip">
                         <FaEdit/>
@@ -124,7 +124,7 @@ const ClientesList = () => {
     <Modal show={abrindo} onHide={handleClose}>
         <Modal.Header closeButton>
             <Modal.Title>
-                Add Employee
+            Adicionar Clientes
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -132,7 +132,7 @@ const ClientesList = () => {
         </Modal.Body>
         <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                    Close Button
+                    Fechar Modal
                 </Button>
         </Modal.Footer>
     </Modal>
