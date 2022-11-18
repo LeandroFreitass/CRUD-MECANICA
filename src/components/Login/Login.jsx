@@ -10,7 +10,19 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [message, setMessage]   = useState("");
     const navigate = useNavigate();
-    
+
+const handleChangeUsername = (e) =>
+{
+    setUsername(e.target.value),
+    setMessage("");
+}
+
+const handleChangePassword = (e) =>
+{
+    setPassword(e.target.value),
+    setMessage("");
+}
+
     async function handleSubmit(evento) {
         evento.preventDefault();
         const userFom = { username, password }; 
@@ -49,8 +61,8 @@ return (
                  value={username}
                  placeholder="Digite o e-mail"
                  className="inputAuth"
-                 onChange={({ e } => { 
-                    setUsername(e.target.value);
+                 onChange={({ y } => { 
+                    handleChangeUsername(y);
                     })}
                 />
                 </div>
@@ -62,7 +74,7 @@ return (
                  value={password}
                  placeholder="Digite a senha"
                  className="inputAuth"
-                 onChange={({ e } => { setPassword(e.target.value);})}
+                 onChange={({ t } => { handleChangePassword(t)})}
                 />  
                     </div>
 
