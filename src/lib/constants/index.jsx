@@ -1,4 +1,6 @@
 import { FaCar, FaHome, FaUser, FaMoneyBill, FaTicketAlt} from 'react-icons/fa';
+import AuthService from './services/AuthService'
+
 
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
@@ -29,13 +31,18 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
+
+	const [currentUser, setCurrentUser] = useState(undefined);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        if(user){
+            setCurrentUser(user);
+        }
+    },[]);
+
 	
-	{
-		key: 'entrarUsuario',
-		label: 'Fazer login',
-		path: '/entrarusuario',
-		icon: <FaCar />
-	},
+	
 	{
 		key: 'registrarUsuario',
 		label: 'Registrar-se',
@@ -48,5 +55,21 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 		label: 'Config Usuario',
 		path: '/usuarios',
 		icon: <FaCar />
+	},
+
+	
+	
+	{currentUser ? ({
+		key: 'logout',
+		label: 'Fazer logout',
+		path: '/logout',
+		icon: <FaCar />
+	}) : ({
+		key: 'login',
+		label: 'Fazer login',
+		path: '/login',
+		icon: <FaCar />
 	}
-]
+)}
+
+	]
