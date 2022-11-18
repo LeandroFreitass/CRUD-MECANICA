@@ -11,12 +11,33 @@ import { IMaskInput } from "react-imask";
 import InputMask from "react-input-mask";
 
 
+export default function AddFormUsuario() {
 
+const user = JSON.parse(localStorage.getItem("user"));
+
+useEffect{
+    axios.(urlAPI, {headers: {Authorization: 'Bearer' + user.token}})
+    .then.setState({lista_usuario: resp.data });
+},
+(error) => { const _mens = (error.response &&
+     error.response.data && 
+     error.response.data.message) ||
+      error.message || error.toString();
+    this.setState({mens: _mens});
+}
+
+render(){
+    return(
+        <Main title = {title}> 
+        {(this.mens) ? "Erro" + this.mens: this.renderForm(), this.renderTable()} </Main>
+    )
+}
 
 const AddFormUsuario = () =>{
     const navigate = useNavigate();
     const { register, handleSubmit, setValue, setFocus } = useForm();
   
+
     function refreshPage(){ 
         window.location.reload(); 
     }
@@ -83,4 +104,4 @@ const AddFormUsuario = () =>{
      )
 }
 
-export default AddFormUsuario;
+}
