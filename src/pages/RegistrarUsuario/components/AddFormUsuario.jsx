@@ -65,15 +65,7 @@ const AddFormUsuario = () =>{
                 {...register("role")}
             />
         </Form.Group>
-        <Form.Group>
-            <Form.Control
-                type="text"
-                placeholder=" digite true ou false para sabermos se é um mecanico"
-                name="isMecanico"
-                {...register("isMecanico")}
-            />
-        </Form.Group>
-        <Form.Group>
+            <Form.Group>
             <Form.Control
                 type="text"
                 placeholder="email@example.com"

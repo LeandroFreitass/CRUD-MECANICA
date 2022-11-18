@@ -13,7 +13,7 @@ import InputMask from "react-input-mask";
 
 
 
-const AddFormLogar = () =>{
+const AddFormUsuario = () =>{
     const navigate = useNavigate();
     const { register, handleSubmit, setValue, setFocus } = useForm();
   
@@ -21,10 +21,10 @@ const AddFormLogar = () =>{
         window.location.reload(); 
     }
     const onSubmit = async (data) => {
-      await axios.post("http://localhost:5277/api/Home/login", {
+      await axios.post("http://localhost:5277/api/Usuario", {
         ...data,
       });
-      navigate("/logar");
+      navigate("/entrarusuario");
     };
   
      return (
@@ -32,7 +32,7 @@ const AddFormLogar = () =>{
         <div className="table-title">
         <div className="row">
             <div className="col-sm-6">
-                <h2>Fazer <b> Login no Sistema L&L Motors! </b></h2>
+                <h2> Logar <b> Usuário </b></h2>
                 <br/><br/>
                 </div>
                </div> 
@@ -65,15 +65,7 @@ const AddFormLogar = () =>{
                 {...register("role")}
             />
         </Form.Group>
-        <Form.Group>
-            <Form.Control
-                type="text"
-                placeholder=" digite {sim} ou {nao} para sabermos se é um mecanico"
-                name="isMecanico"
-                {...register("isMecanico")}
-            />
-        </Form.Group>
-        <Form.Group>
+            <Form.Group>
             <Form.Control
                 type="text"
                 placeholder="email@example.com"
@@ -83,7 +75,7 @@ const AddFormLogar = () =>{
             />
         </Form.Group>
         <Button variant="success" type="submit" block onClick={ refreshPage }>
-           Entrar no sistema 
+            Fazer login/entrar
         </Button>
     </Form>
    </>

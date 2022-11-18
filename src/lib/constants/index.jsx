@@ -31,9 +31,9 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 	
 	{
-		key: 'logar',
+		key: 'entrarUsuario',
 		label: 'Fazer login',
-		path: '/logar',
+		path: '/entrarusuario',
 		icon: <FaCar />
 	},
 	{

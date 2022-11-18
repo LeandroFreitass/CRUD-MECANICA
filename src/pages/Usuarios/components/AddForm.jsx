@@ -59,14 +59,6 @@ const AddForm = () =>{
         <Form.Group>
             <Form.Control
                 type="text"
-                placeholder=" isMecanico: true ou false"
-                name="isMecanico"
-                {...register("isMecanico")}
-            />
-        </Form.Group>
-        <Form.Group>
-            <Form.Control
-                type="text"
                 placeholder="email@example.com"
                 name="email"
                 maxLength={100}
