@@ -27,7 +27,6 @@ const Usuarios = ({employee}) => {
             <td>{employee.username}</td>
             <td>{employee.senha}</td>
             <td>{employee.role}</td>
-            <td>{employee.isMecanico}</td>
             <td>{employee.email}</td>
             <td>
                 <OverlayTrigger

@@ -66,7 +66,6 @@ const ClientesList = () => {
                   <th>Username</th>
                   <th>Senha</th>
                   <th>Role</th>
-                  <th>isMecanico</th>
                   <th>Email</th>
                   <th style={{width:'30px'}}>Ação</th>
                 </tr>
@@ -78,7 +77,6 @@ const ClientesList = () => {
                     <td style={{fontSize:'12px'}}>{item.username}</td>
                     <td style={{fontSize:'12px'}}>{item.senha}</td>
                     <td style={{fontSize:'12px'}}>{item.role}</td>
-                    <td style={{fontSize:'12px'}}>{item.isMecanico}</td>
                     <td style={{fontSize:'12px'}}>{item.email}</td>
                     <td>
                       <Link to={"/usuario/" + item.id} data-toggle="tooltip">

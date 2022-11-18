@@ -21,7 +21,7 @@ const AddFormUsuario = () =>{
         window.location.reload(); 
     }
     const onSubmit = async (data) => {
-      await axios.post("http://localhost:5277/api/Usuario", {
+      await axios.post("http://localhost:5277/api/Home/login", {
         ...data,
       });
       navigate("/entrarusuario");

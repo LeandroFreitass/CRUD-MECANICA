@@ -11,7 +11,7 @@ const EditForm = () =>{
     const [username, setUsername] = useState('');
     const [senha, setSenha] = useState('');
     const [role, setRole] = useState('');
-    const [isMecanico, setIsMecanico] = useState('');
+
     const [email, setEmail] = useState('');
   
     const navigate = useNavigate();
@@ -23,7 +23,6 @@ const EditForm = () =>{
             username: username,
             senha: senha,
             role: role,
-            isMecanico: isMecanico,
             email: email,
         });
         navigate("/usuarios")
@@ -38,7 +37,6 @@ const EditForm = () =>{
         setUsername(response.data.username);
         setSenha(response.data.senha);
         setRole(response.data.role);
-        setIsMecanico(response.data.isMecanico);
         setEmail(response.data.email);
     }
 
