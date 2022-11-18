@@ -49,7 +49,9 @@ return (
                  value={username}
                  placeholder="Digite o e-mail"
                  className="inputAuth"
-                 onChange={({ target } => { setUsername(target.value); setMessage("");})}
+                 onChange={({ target } => { 
+                    setUsername(target.value);
+                    })}
                 />
                 </div>
 
@@ -60,7 +62,7 @@ return (
                  value={password}
                  placeholder="Digite a senha"
                  className="inputAuth"
-                 onChange={({ target } => { setPassword(target.value); setMessage("");})}
+                 onChange={({ target } => { setPassword(target.value);})}
                 />  
                     </div>
 
